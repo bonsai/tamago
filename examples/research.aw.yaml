@@ -1,0 +1,18 @@
+version: "0.1"
+name: research-loop
+goal: "新しい研究仮説を、証拠付きで1件発見する"
+context: "観測データと外部ソースから研究可能な仮説を作る"
+prompt: "観測結果から重要なパターンを見つけ、検証可能な仮説を提案する"
+constraints:
+  - "根拠となる証拠を最低3件集める"
+  - "推測と確認済み事実を分離する"
+tools:
+  - web_search
+  - data_analysis
+  - evidence_store
+success:
+  - hypothesis_exists
+  - evidence_exists
+  - research_question_exists
+examples:
+  - "idol-research research loop"
