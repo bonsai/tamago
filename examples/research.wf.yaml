@@ -1,0 +1,23 @@
+version: "0.1"
+name: research-loop
+goal: "新しい研究仮説を、証拠付きで1件発見する"
+steps:
+  - id: observe
+    kind: agent
+    prompt: "観測データから重要なパターンを抽出する"
+  - id: search
+    kind: tool
+    tool: web_search
+    needs: [observe]
+  - id: analyze
+    kind: agent
+    prompt: "観測と検索結果を比較し、検証可能な仮説を生成する"
+    needs: [search]
+  - id: verify
+    kind: tool
+    tool: evidence_store
+    needs: [analyze]
+  - id: success
+    kind: condition
+    condition: "hypothesis_exists && evidence_exists && research_question_exists"
+    needs: [verify]
